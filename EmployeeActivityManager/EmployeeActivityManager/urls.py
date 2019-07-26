@@ -21,4 +21,5 @@ urlpatterns = [
     path('timetracker/', include('timetracker.urls')),
     path('', include('timetracker.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
