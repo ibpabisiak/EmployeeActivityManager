@@ -7,7 +7,7 @@ from django.urls import reverse
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
 
-    template = loader.get_template('index.html')
+    template = loader.get_template('polls/index.html')
 
     context = {
         'latest_question_list': latest_question_list,
@@ -26,7 +26,7 @@ def index(request):
 # short way to get object or throw 404 if object does not exist
 def details(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'details.html', {'question' : question})
+    return render(request, 'polls/details.html', {'question' : question})
 
 def result(request, question_id):
     return HttpResponse("you are loogin at the result of question %s." % question_id)
@@ -39,7 +39,7 @@ def vote(request, question_id):
 
         #redisplay the question voting form:
 
-        return render(request, 'details.html', {
+        return render(request, 'polls/details.html', {
             'question' : question,
             'error_message': "You didn't select a choice.",
         })
